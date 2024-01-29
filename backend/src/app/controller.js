@@ -15,9 +15,26 @@ export const create = requestHandler(async (req, res, next) => {
         throw new ServerError(`type must be one of ${config.config.app.types}`, 422);
     }
 
-    const newApp = new App({ name: name, type: type, appId: utils.generateAppId(name), })
+    const newApp = new App({ name: name, type: type, appId: utils.generateAppId(name), user: res?.id })
 
     await newApp.save();
 
     res.status(201).json(new ApiResponse({ status: 201, message: "App created successfully" }))
-})
+});
+
+export const getAppInfo = requestHandler(async (req, res, next) => {
+    const id = req.query?.id;
+    const app = await App.findOne(id ? { appId: id } : { user: res?.id }).lean();
+
+    if (!app) {
+        throw new ServerError("App not found", 400);
+    }
+
+    return res.status(200).json(new ApiResponse({
+        status: 200,
+        message: "App information",
+        data: {
+            ...app
+        }
+    }))
+});

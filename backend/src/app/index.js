@@ -10,6 +10,7 @@ export default () => {
     router.use(...checkAuthToken({ blockOnError: true }));
 
     router.post("/create", controller.create)
+    router.get("/", controller.getAppInfo)
 
     return router;
 }
