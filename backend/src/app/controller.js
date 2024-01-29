@@ -20,7 +20,7 @@ export const create = requestHandler(async (req, res, next) => {
     await newApp.save();
 
     res.status(201).json(new ApiResponse({ status: 201, message: "App created successfully" }))
-})
+});
 
 export const getAppInfo = requestHandler(async (req, res, next) => {
     const id = req.query?.id;
@@ -37,4 +37,4 @@ export const getAppInfo = requestHandler(async (req, res, next) => {
             ...app
         }
     }))
-})
+});
