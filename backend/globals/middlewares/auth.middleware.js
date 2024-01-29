@@ -1,0 +1,31 @@
+import { requestHandler } from "../utils/request-handler.js";
+import jwtVerifier from "./jwt.middleware.js";
+import ApiResponse from "../utils/api-response.js";
+
+const authMiddleware = ({ blockOnError }) => {
+
+    return requestHandler(async (req, res, next) => {
+        const auth = req.headers.authorization?.split(" ")[1]
+
+        if (!auth && blockOnError) {
+            return res.status(401).json(new ApiResponse({
+                status: 401,
+                message: "Missing Auth Token"
+            }))
+        }
+
+        res["auth"] = auth;
+
+        next();
+    })
+}
+
+function checkAuthToken({ blockOnError = false }) {
+    if (blockOnError) {
+        return [authMiddleware({ blockOnError: true }), jwtVerifier()]
+    }
+
+    return [authMiddleware];
+}
+
+export default checkAuthToken;
