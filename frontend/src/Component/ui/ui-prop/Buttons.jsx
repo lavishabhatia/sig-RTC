@@ -4,7 +4,7 @@ export const PrimaryButton = ({ title }) => {
   return (
     <button
       
-      className="mt-7 grow shrink basis-0 px-4 py-2 bg-violet-500 rounded-md justify-center items-center gap-2 flex text-zinc-100 text-base font-medium tracking-wide "
+      className="mt-7 w-full grow shrink basis-0 px-4 py-2 bg-violet-500 rounded-md justify-center items-center gap-2 flex text-zinc-100 text-base font-medium tracking-wide "
     >
       {title}
     </button>

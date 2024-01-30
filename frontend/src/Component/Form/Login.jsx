@@ -1,5 +1,5 @@
 import React from "react";
-import { FormHeading } from "../ui/ui-prop/Heading";
+import { Heading } from "../ui/ui-prop/Heading";
 import { InputField } from "../ui/ui-prop/Inputs";
 import { InfoLoginButton, PrimaryButton } from "../ui/ui-prop/Buttons";
 import { useForm } from "react-hook-form";
@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { data } from "autoprefixer";
 import { login } from "../../api/repository/Authentication";
+import { useNavigate } from "react-router-dom";
 
 const authSchema = yup.object({
   email: yup.string().required("Required"),
@@ -22,6 +23,8 @@ const Login = () => {
     resolver: yupResolver(authSchema),
   });
 
+  const navigate = useNavigate()
+
   const authLogin = async (data) => {
     const res = await login(data);
     if (res?.success === false) {
@@ -30,8 +33,8 @@ const Login = () => {
       return;
     } else {
       localStorage.setItem("token", res?.data?.jwt);
-      SuccessAlert("Welcome");
-      navigate("/");
+      // SuccessAlert("Welcome");
+      navigate("/create");
     }
   };
   
@@ -39,7 +42,7 @@ const Login = () => {
     <>
       <div className="w-full h-screen lg:max-w-[900px]  mx-auto flex items-center justify-center">
         <div className="flex flex-col  p-6 rounded-md md:w-[600px] bg-secoundary text-white">
-          <FormHeading title={"Log In"} />
+          <Heading title={"Log In"} />
           <form
             onSubmit={handleSubmit(authLogin)}
             className="flex flex-col gap-4"

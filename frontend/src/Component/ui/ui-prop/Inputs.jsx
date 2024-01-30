@@ -1,11 +1,16 @@
 import React from "react";
 
-
-export const InputField = ({ title, type ,register, defaultValue ,error , ...props}) => {
-  
-
+export const InputField = ({
+  title,
+  className,
+  type,
+  register,
+  defaultValue,
+  error,
+  ...props
+}) => {
   return (
-    <div className="w-full flex flex-col gap-2 ">
+    <div className={`w-full flex flex-col gap-2 ${className} `}>
       <label className="text-zinc-100 text-sm font-medium leading-normal tracking-wide">
         {title}
       </label>

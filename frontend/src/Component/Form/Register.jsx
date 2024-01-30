@@ -1,7 +1,7 @@
 import React from "react";
 import { InfoLoginButton, PrimaryButton } from "../ui/ui-prop/Buttons";
 import { InputField } from "../ui/ui-prop/Inputs";
-import { FormHeading } from "../ui/ui-prop/Heading";
+import { Heading } from "../ui/ui-prop/Heading";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -38,7 +38,7 @@ const Register = () => {
     <div className="bg-primary">
       <div className="w-full h-screen lg:max-w-[900px]  mx-auto flex items-center justify-center">
         <div className="flex flex-col  p-6 rounded-md md:w-[600px] bg-secoundary text-white">
-          <FormHeading title={"Register"} />
+          <Heading title={"Register"} />
           <form
             onSubmit={handleSubmit(authRegister)}
             className="flex flex-col gap-4"

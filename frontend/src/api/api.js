@@ -6,7 +6,7 @@ import {
 // import state from "../state";
 
 export const BASE_URL =
-  "https://cb10-2405-201-300f-bec-347e-895-a2b2-3966.ngrok-free.app";
+  "https://b906-2405-201-300f-bec-c0e-2b20-1464-abb.ngrok-free.app";
 const API_BASE_URL = `${BASE_URL}/api`;
 
 const instance = ({ key, loader }) => {
